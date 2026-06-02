@@ -1,0 +1,63 @@
+[project]
+name = "assistente-investimentos"
+version = "0.1.0"
+description = "Assistente de Investimentos em renda variavel (B3) construido como AI Agent multi-agente com Google ADK."
+authors = [{ name = "Rodrigo Darti da Costa" }]
+readme = "README.md"
+requires-python = ">=3.14,<3.15"
+dependencies = [
+    "google-adk (>=1.0.0)",
+    "litellm (>=1.74.0)",
+    "yfinance (>=0.2.40)",
+    "feedparser (>=6.0.0)",
+    "pandas-ta-classic (>=0.6.0)",
+    "pandas (>=2.2.0)",
+    "numpy (>=2.0.0)",
+    "plotly (>=5.22.0)",
+    "mplfinance (>=0.12.10b0)",
+    "chainlit (>=1.3.0)",
+    "pydantic (>=2.7.0)",
+    "pydantic-settings (>=2.3.0)",
+]
+
+[project.scripts]
+assistente = "assistente.cli:main"
+
+[tool.poetry]
+packages = [{ include = "assistente", from = "src" }]
+
+# Sentimento dedicado (FinBERT-PT-BR). Grupo opcional: instala torch+transformers,
+# que sao pesados e podem nao ter wheels estaveis no Python 3.14.
+# Instale com: poetry install --with sentiment
+[tool.poetry.group.sentiment]
+optional = true
+
+[tool.poetry.group.sentiment.dependencies]
+torch = ">=2.9.0"
+transformers = ">=4.44.0"
+
+[tool.poetry.group.dev.dependencies]
+ruff = ">=0.6.0"
+pytest = ">=8.2.0"
+pre-commit = ">=3.7.0"
+
+[tool.poetry.group.notebook.dependencies]
+jupyter = ">=1.0.0"
+ipykernel = ">=6.29.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q"

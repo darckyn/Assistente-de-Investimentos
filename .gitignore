@@ -1,0 +1,39 @@
+# Segredos
+.env
+*.env
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Ambientes
+.venv/
+venv/
+
+# Poetry (lock fica versionado; cache nao)
+.cache/
+
+# Ferramentas
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# Chainlit
+.chainlit/
+.files/
+
+# Caches de dados/modelos
+.hf_cache/
+data_cache/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
